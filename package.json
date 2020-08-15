@@ -1,0 +1,19 @@
+{
+  "name": "speech-to-text",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27"
+  }
+}
