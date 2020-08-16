@@ -6,6 +6,7 @@ interface SpeechSettings {
     subscriptionKey: string;
     region: string;
     language: string;
+    endpointId?: string;
 }
 
 function speechToText(settings: SpeechSettings, audioStream: Speech.AudioInputStream) {
@@ -13,6 +14,10 @@ function speechToText(settings: SpeechSettings, audioStream: Speech.AudioInputSt
     const speechConfig = Speech.SpeechConfig.fromSubscription(settings.subscriptionKey, settings.region);
     speechConfig.speechRecognitionLanguage = settings.language;
     speechConfig.outputFormat = Speech.OutputFormat.Detailed;
+
+    if (settings.endpointId) {
+        speechConfig.endpointId = settings.endpointId;
+    }
 
     const recognizer = new Speech.SpeechRecognizer(speechConfig, audioConfig);
 
@@ -94,11 +99,12 @@ try {
     const settings: SpeechSettings = {
         subscriptionKey: process.env.SPEECH_SUBSCRIPTION_KEY || '',
         region: process.env.SPEECH_REGION || '',
-        language: process.env.SPEECH_LANGUAGE || ''
+        language: process.env.SPEECH_LANGUAGE || '',
+        endpointId: process.env.SPEECH_ENDPOINT_ID || '',
     };
 
     // Transcribe
-    const stream = openPushStream('aboutSpeechSdk.wav');
+    const stream = openPushStream('sample4.wav');
     speechToText(settings, stream);
 }
 catch (e) {
