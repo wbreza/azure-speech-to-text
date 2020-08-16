@@ -79,7 +79,7 @@ function speechToText(settings: SpeechSettings, audioStream: Speech.AudioInputSt
 
 function openPushStream(filename: string) {
     // create the push stream we need for the speech sdk.
-    var pushStream = Speech.AudioInputStream.createPushStream()
+    var pushStream = Speech.AudioInputStream.createPushStream();
 
     // open the file and push it to the push stream.
     fs.createReadStream(filename).on('data', function (arrayBuffer: ArrayBuffer) {
@@ -104,7 +104,7 @@ try {
     };
 
     // Transcribe
-    const stream = openPushStream('sample4.wav');
+    const stream = openPushStream('aboutSpeechSdk.wav');
     speechToText(settings, stream);
 }
 catch (e) {
